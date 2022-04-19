@@ -33,7 +33,6 @@ import { Dynamic1Component } from './dynamic1/dynamic1.component';
 
 export class MyCustomPaginatorIntl extends MatPaginatorIntl {
   showPlus: boolean = false;
-
   getRangeLabel = (page: number, pageSize: number, length: number) => {
     if (length == 0 || pageSize == 0) {
       return `0 of ${length}`;
