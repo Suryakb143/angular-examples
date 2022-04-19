@@ -1,0 +1,151 @@
+.example-container {
+  width: 400px;
+  max-width: 100%;
+  margin: 0 25px 25px 0;
+  display: inline-block;
+  vertical-align: top;
+}
+
+.example-list {
+  border: solid 1px #ccc;
+  min-height: 60px;
+  background: white;
+  border-radius: 4px;
+  overflow: hidden;
+  display: block;
+
+  max-height: 155px;
+  min-height: 130px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  position: relative;
+  cursor: pointer;
+  font-family: sans-serif;
+}
+
+div.example-list::-webkit-scrollbar {
+  width: 12px;
+}
+
+div.example-list::-webkit-scrollbar-button {
+  width: 0px;
+  height: 0px;
+}
+
+div.example-list {
+  scrollbar-base-color: indigo;
+  scrollbar-3dlight-color: indigo;
+  scrollbar-highlight-color: indigo;
+  scrollbar-track-color: #eee;
+  scrollbar-arrow-color: gray;
+  scrollbar-shadow-color: gray;
+  scrollbar-dark-shadow-color: gray;
+}
+
+div.example-list::-webkit-scrollbar-track {
+  background: #eee;
+  box-shadow: 0px 0px 3px #dfdfdf inset;
+}
+
+div.example-list::-webkit-scrollbar-thumb {
+  background: indigo;
+  border: thin solid gray;
+}
+
+div.example-list::-webkit-scrollbar-thumb:hover {
+  background: purple;
+}
+.example-box {
+  padding: 5px 10px;
+  border-bottom: solid 1px #ccc;
+  color: rgba(0, 0, 0, 0.87);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+  // cursor: move;
+  background: white;
+  font-size: 14px;
+}
+
+.cdk-drag-preview {
+  box-sizing: border-box;
+  border-radius: 4px;
+  box-shadow: 0 5px 5px -3px rgba(0, 0, 0, 0.2), 0 8px 10px 1px rgba(0, 0, 0, 0.14), 0 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+
+.cdk-drag-placeholder {
+  opacity: 0;
+}
+
+.cdk-drag-animating {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.example-box:last-child {
+  border: none;
+}
+
+.example-list.cdk-drop-list-dragging .example-box:not(.cdk-drag-placeholder) {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+.example-box.selected {
+  background-color: thistle;
+  border-top: thin solid #ddd;
+  border-bottom: 1px solid #ddd;
+}
+.multi {
+  opacity: 1;
+}
+.multi:before {
+  content: "";
+  position: absolute;
+  opacity: 1;
+  width: 300px;
+  height: 300px;
+  display: block;
+  z-index: 100;
+  background: url("https://cdn0.iconfinder.com/data/icons/computers-and-development/432/drag-and-drop-512.png")
+    no-repeat;
+  background-size: 50%;
+}
+.single {
+  min-height: 60px;
+  width: 400px;
+  padding: 20px 10px;
+  background: white;
+}
+buttonbox {
+  margin: 0 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.btn-block {
+  display: block;
+  width: 70px;
+  margin: 4px;
+}
+
+button {
+  color: white;
+  font-size: 18px;
+  background: indigo;
+  padding: 5px 10px;
+  border: solid black 1px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+button:hover {
+  background: purple;
+  text-decoration: none;
+}
+
+button:disabled {
+  background: rgba(75, 0, 130, 0.5);
+  cursor: default;
+}

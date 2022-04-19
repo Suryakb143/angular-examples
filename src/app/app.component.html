@@ -1,0 +1,401 @@
+<button (click)="dynamicallyLodComponent1()">dynamicallyLodComponent1</button>
+<ng-template #container> </ng-template>
+
+<div class="mat-elevation-z8">
+  moment date conversion
+  {{ date }} <br />
+  {{ date1 }}
+  <br />
+  <br />
+  <br />
+  <mat-form-field>
+    <input
+      matInput
+      type="url"
+      pattern="https?://.+"
+      placeholder="Large Icon"
+      name="largeicon"
+      #largeicon="ngModel"
+      [(ngModel)]="urlModel"
+      required
+    />
+  </mat-form-field>
+  <mat-slider thumbLabel tickInterval="1"></mat-slider>
+  <div class="custom-slider">
+    <ngx-slider [(value)]="sliderValue" [options]="options"></ngx-slider>
+  </div>
+  <div class="container">
+    <div class="box" style="background: red">rea</div>
+    <div class="box stack-top" style="background: blue">asdfds</div>
+  </div>
+  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+    <!-- Checkbox Column -->
+    <ng-container matColumnDef="select">
+      <th mat-header-cell *matHeaderCellDef class="noborder">
+        <mat-checkbox
+          (change)="$event ? masterToggle() : null"
+          [checked]="selection.hasValue() && isAllSelected()"
+          [indeterminate]="selection.hasValue() && !isAllSelected()"
+          [aria-label]="checkboxLabel()"
+        >
+        </mat-checkbox>
+      </th>
+      <td mat-cell *matCellDef="let row">
+        <mat-checkbox
+          (click)="$event.stopPropagation()"
+          (change)="$event ? selection.toggle(row) : null"
+          [checked]="selection.isSelected(row)"
+          [aria-label]="checkboxLabel(row)"
+        >
+        </mat-checkbox>
+      </td>
+    </ng-container>
+    <!-- Position Column -->
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef class="noborder">
+        <div class="d-flex">
+          <div style="float: left; width: 35%; word-break: break-word">
+            No. <app-mat-column-filter></app-mat-column-filter>
+          </div>
+          <div style="display: inline-grid">
+            <mat-icon>arrow_upward</mat-icon>
+            <mat-icon disabled>arrow_downward</mat-icon>
+            <mat-icon>filter_list</mat-icon>
+          </div>
+        </div>
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.position }}</td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef class="noborder">
+        <div class="d-flex">
+          <div style="float: left; width: 35%; word-break: break-word">
+            Company Name
+            <app-mat-column-filter [multiple]="true"></app-mat-column-filter>
+          </div>
+          <div style="display: inline-grid">
+            <mat-icon>arrow_upward</mat-icon>
+            <mat-icon disabled>arrow_downward</mat-icon>
+            <mat-icon (click)="showFilers()">filter_list</mat-icon>
+          </div>
+        </div>
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="weight">
+      <th mat-header-cell *matHeaderCellDef class="noborder">
+        <div class="d-flex">
+          <div style="float: left; width: 35%; word-break: break-word">
+            Weight
+          </div>
+          <div style="display: inline-grid">
+            <mat-icon>arrow_upward</mat-icon>
+            <mat-icon disabled>arrow_downward</mat-icon>
+            <mat-icon>filter_list</mat-icon>
+          </div>
+        </div>
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.weight }}</td>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="symbol">
+      <th mat-header-cell *matHeaderCellDef class="noborder">
+        <div class="d-flex">
+          <div style="float: left; width: 35%; word-break: break-word">
+            Symbol
+          </div>
+          <div style="display: inline-grid">
+            <mat-icon>arrow_upward</mat-icon>
+            <mat-icon disabled>arrow_downward</mat-icon>
+            <mat-icon>filter_list</mat-icon>
+          </div>
+        </div>
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.symbol }}</td>
+    </ng-container>
+
+    <!-- dynamic Column -->
+    <ng-container matColumnDef="revenue">
+      <th mat-header-cell *matHeaderCellDef class="noborder">
+        <div class="d-flex">
+          <div style="float: left; width: 35%; word-break: break-word">
+            Revenue
+          </div>
+          <div style="display: inline-grid">
+            <mat-icon>arrow_upward</mat-icon>
+            <mat-icon disabled>arrow_downward</mat-icon>
+            <mat-icon>filter_list</mat-icon>
+          </div>
+        </div>
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.revenue }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="cap">
+      <th mat-header-cell *matHeaderCellDef class="noborder">
+        <div class="d-flex">
+          <div style="float: left; width: 35%; word-break: break-word">Cap</div>
+          <div style="display: inline-grid">
+            <mat-icon>arrow_upward</mat-icon>
+            <mat-icon disabled>arrow_downward</mat-icon>
+            <mat-icon>filter_list</mat-icon>
+          </div>
+        </div>
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.cap }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="branch">
+      <th mat-header-cell *matHeaderCellDef class="noborder">
+        <div class="d-flex">
+          <div style="float: left; width: 35%; word-break: break-word">
+            Branch
+          </div>
+          <div style="display: inline-grid">
+            <mat-icon>arrow_upward</mat-icon>
+            <mat-icon disabled>arrow_downward</mat-icon>
+            <mat-icon>filter_list</mat-icon>
+          </div>
+        </div>
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.branch }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="state">
+      <th mat-header-cell *matHeaderCellDef class="noborder">
+        <div class="d-flex">
+          <div style="float: left; width: 35%; word-break: break-word">
+            State
+          </div>
+          <div style="display: inline-grid">
+            <mat-icon>arrow_upward</mat-icon>
+            <mat-icon disabled>arrow_downward</mat-icon>
+            <mat-icon>filter_list</mat-icon>
+          </div>
+        </div>
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.state }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef class="noborder">
+        <div class="d-flex">
+          <div style="float: left; width: 35%; word-break: break-word">
+            Status
+          </div>
+          <div style="display: inline-grid">
+            <mat-icon>arrow_upward</mat-icon>
+            <mat-icon disabled>arrow_downward</mat-icon>
+            <mat-icon (click)="showFilers()">filter_list</mat-icon>
+            <app-mat-column-filter></app-mat-column-filter>
+          </div>
+        </div>
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.status }}</td>
+    </ng-container>
+    <!-- Header row empty group -->
+    <ng-container matColumnDef="empty">
+      <th mat-header-cell *matHeaderCellDef></th>
+    </ng-container>
+    <!-- Header row first group -->
+    <ng-container matColumnDef="Location">
+      <th mat-header-cell *matHeaderCellDef>
+        {{ headerColumnsData.get("Location") }}
+      </th>
+    </ng-container>
+
+    <!-- Header row second group -->
+    <ng-container matColumnDef="preneve">
+      <th mat-header-cell *matHeaderCellDef>
+        {{ headerColumnsData.get("preneve") }}
+      </th>
+    </ng-container>
+    <!-- Header row second group -->
+    <ng-container matColumnDef="A">
+      <th mat-header-cell *matHeaderCellDef>
+        {{ headerColumnsData.get("A") }}
+      </th>
+    </ng-container>
+    <!-- Header row second group -->
+    <ng-container matColumnDef="B">
+      <th mat-header-cell *matHeaderCellDef>
+        {{ headerColumnsData.get("B") }}
+      </th>
+    </ng-container>
+
+    <!-- dynamic Column end-->
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr
+      mat-header-row
+      *matHeaderRowDef="['empty', 'Location', 'preneve', 'A', 'B']"
+    ></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <mat-paginator
+    style-paginator
+    #paginator
+    [length]="dataSource.data.length"
+    [pageSize]="3"
+    [pageSizeOptions]="[3, 5, 10, 20]"
+    (page)="onPageNavigate($event)"
+  >
+  </mat-paginator>
+
+  <app-grid-view></app-grid-view>
+  <div>
+    <span (click)="openDualList()">Open dual list</span>
+    <app-dual-list
+      [sort]="true"
+      [source]="source1"
+      key="_id"
+      display="name"
+      [(destination)]="target"
+      height="130px"
+    ></app-dual-list>
+    <br />
+    <div>
+      <div class="example-container">
+        <h2>To do</h2>
+
+        <div
+          cdkDropList
+          #todoList="cdkDropList"
+          [cdkDropListData]="todo"
+          [cdkDropListConnectedTo]="[doneList]"
+          class="example-list"
+          (cdkDropListDropped)="drop($event)"
+        >
+          <div class="example-box" *ngFor="let item of todo" cdkDrag>
+            {{ item }}
+          </div>
+        </div>
+      </div>
+
+      <div class="example-container">
+        <h2>Done</h2>
+
+        <div
+          cdkDropList
+          #doneList="cdkDropList"
+          [cdkDropListData]="done"
+          [cdkDropListConnectedTo]="[todoList]"
+          class="example-list"
+          (cdkDropListDropped)="drop($event)"
+        >
+          <div class="example-box" *ngFor="let item of done" cdkDrag>
+            {{ item }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      CDK duallist
+      <ng-template #contentDia>
+        <app-cdk-dual-list></app-cdk-dual-list>
+      </ng-template>
+      <button (click)="cdkdialog(contentDia)">Click Dual list cdk</button><
+      <!-- <div>
+    <material-dual-listbox [source]="source1" [(destination)]="target">
+    </material-dual-listbox>
+  </div> -->
+      <!-- <dual-list [sort]="keepSorted" [source]="source" [key]="key" [display]="display" [filter]="filter"
+		[(destination)]="confirmed" height="265px" [format]="format" [disabled]="disabled"></dual-list> -->
+      <button (click)="updateTableColumns()">OK</button>
+    </div>
+
+    <div style="text-align: center; font-size: x-large; font-family: monospace">
+      Example of Subject in RxJs
+    </div>
+    <div style="margin: 10px" class="card-deck">
+      <!-- <app-component1></app-component1>
+      <app-component2></app-component2>
+      <app-component3></app-component3> -->
+    </div>
+
+    <p>
+      Lorem ipsum dolor sit amet consectetur adipisicing elit. Et consectetur
+      pariatur debitis error nobis
+      <span class="tooltip" appTooltip="Here's a tooltip for you"
+        >ex vero recusandae</span
+      >
+      reiciendis! Magni et magnam cumque praesentium? Eum consequatur ut totam
+      sequi asperiores.
+      <span class="tooltip">Laboriosam?</span>
+    </p>
+    <br />
+    <br />
+    <div class="tooltsdaip">
+      <span class="tooltip" [appTooltip]="myTooltipContent">
+        <input [(ngModel)]="test" class="form-control" type="text" />
+      </span>
+    </div>
+
+    <ng-template #myTooltipContent>
+      <h1>Something</h1>
+      <ul>
+        <li>Blah</li>
+        <li>Blah</li>
+        <li>Blah</li>
+      </ul>
+      <p>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Delectus
+        similique commodi, tempora explicabo molestiae minima nesciunt est
+        repellat recusandae, natus nulla eos sapiente et hic sequi
+        exercitationem quia at? Accusamus.
+      </p>
+    </ng-template>
+  </div>
+
+  <!-- Copyright 2020 Google LLC. All Rights Reserved.
+    Use of this source code is governed by an MIT-style license that
+    can be found in the LICENSE file at http://angular.io/license -->
+  <div>app-mat-paginator-nav</div>
+  <app-mat-paginator-nav></app-mat-paginator-nav>
+</div>
+<div
+  bsModal
+  #childModal="bs-modal"
+  class="modal fade"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="dialog-child-name"
+>
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 id="dialog-child-name" class="modal-title pull-left">
+          You Have Been Idle!
+        </h4>
+        <button
+          type="button"
+          class="close pull-right"
+          aria-label="Close"
+          (click)="hideChildModal()"
+        >
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        {{ idleState }}
+        <div class="row mrgbtm">
+          <div class="col-md-6">
+            <button type="button" (click)="logout()" class="btn btn-danger">
+              Logout
+            </button>
+          </div>
+          <div class="col-md-6">
+            <button type="button" (click)="stay()" class="btn btn-success">
+              Stay
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

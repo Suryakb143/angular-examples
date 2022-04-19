@@ -1,0 +1,159 @@
+<!-- Position Column -->
+<button (click)="onAddClick1()">Add</button>
+<div class="container">
+  <div style="float: left">
+    <i
+      *ngIf="disableLeftBtn"
+      class="fa fa-chevron-circle-left"
+      style="font-size: 36px; margin-top: 22px; color: gray"
+    ></i>
+    <i
+      *ngIf="!disableLeftBtn"
+      class="fa fa-chevron-circle-left"
+      style="font-size: 36px; margin-top: 22px"
+      (click)="scrollLeft()"
+    ></i>
+  </div>
+
+  <div #widgetsContent class="middle">
+    <div
+      #elementList
+      class="info-widget"
+      *ngFor="let log of obs1 | async; let i = index"
+      [id]="i"
+      (click)="onGrantClick(i)"
+    >
+      <span style="white-space: break-spaces">
+        Item #{{ i }}: {{ log.name }}
+      </span>
+    </div>
+  </div>
+  <!-- <cdk-virtual-scroll-viewport
+    itemSize="10"
+    orientation="horizontal"
+    class="gkz-horizontal-viewport"
+  >
+    <div *cdkVirtualFor="let item of obs1 | async" class="info-widget">
+      <span style="white-space: break-spaces">
+        {{ item.name }}
+      </span>
+    </div>
+  </cdk-virtual-scroll-viewport> -->
+  <!-- <cdk-virtual-scroll-viewport
+    orientation="horizontal"
+    itemSize="20"
+    class="gkz-horizontal-viewport"
+  >
+    <div
+      *cdkVirtualFor="let item of obs1 | async; let i = index"
+      class=""
+      class="info-widget"
+    >
+      <span style="white-space: break-spaces">
+        Item #{{ i }}: {{ item.name }}
+      </span>
+    </div>
+  </cdk-virtual-scroll-viewport> -->
+
+  <div style="float: right">
+    <i
+      *ngIf="disableRightBtn"
+      class="fa fa-chevron-circle-right"
+      style="font-size: 36px; margin-top: 22px; color: gray"
+    ></i>
+    <i
+      *ngIf="!disableRightBtn"
+      class="fa fa-chevron-circle-right"
+      style="font-size: 36px; margin-top: 22px"
+      (click)="scrollRight()"
+    ></i>
+  </div>
+</div>
+<!-- <div>
+  <div>
+    <div class="cdk-virtual-scroll-data-source-example">
+      <cdk-virtual-scroll-viewport
+        orientation="horizontal"
+        itemSize="50"
+        class="gkz-horizontal-viewport"
+      >
+        <div *cdkVirtualFor="let item of items; let i = index" class="item">
+          Item #{{ i }}: {{ item }}
+        </div>
+      </cdk-virtual-scroll-viewport>
+    </div>
+  </div>
+</div> -->
+<!-- <div style="display: flex">
+  <div>
+    <i
+      class="fa fa-chevron-circle-left"
+      style="font-size: 36px"
+      *ngIf="!disblaLeftclick"
+    ></i>
+    <i
+      class="fa fa-chevron-circle-left"
+      style="font-size: 36px"
+      *ngIf="disblaLeftclick"
+      (click)="onleftClickDiv()"
+    ></i>
+  </div>
+  <ng-container *ngFor="let grant of obs | async">
+    <mat-card *ngIf="grant.visiable">
+      <mat-card-content> {{ grant.name }}</mat-card-content>
+    </mat-card>
+  </ng-container>
+  <div>
+    <i
+      class="fa fa-chevron-circle-right"
+      style="font-size: 36px"
+      (click)="onRightClickDiv()"
+      *ngIf="disblaRightclick"
+    ></i>
+    <i
+      class="fa fa-chevron-circle-right"
+      style="font-size: 36px"
+      *ngIf="!disblaRightclick"
+    ></i>
+  </div>
+  <!--
+  <mat-paginator
+    style-paginator
+    #paginator
+    [length]="dataSource.data.length"
+    [pageSize]="5"
+    [pageSizeOptions]="[3]"
+    (page)="onPageNavigate($event)"
+  >
+  </mat-paginator>
+</div> -->
+
+<!-- <div>
+  <div class="container">
+    <div style="float: left">
+      <i
+        class="fa fa-chevron-circle-left"
+        style="font-size: 36px; margin-top: 22px"
+        (click)="scrollLeft2()"
+      ></i>
+    </div>
+    <div class="middle">
+      <div
+        #element
+        *ngFor="let item of obs1 | async"
+        (click)="select(item)"
+        [class.active2]="selected === item"
+        class="item2"
+      >
+        <span style="white-space: break-spaces"> Item : {{ item.name }} </span>
+      </div>
+    </div>
+    <div style="float: right">
+      <i
+        class="fa fa-chevron-circle-right"
+        style="font-size: 36px; margin-top: 22px"
+        (click)="scrollRight2()"
+      ></i>
+    </div>
+  </div>
+</div> -->

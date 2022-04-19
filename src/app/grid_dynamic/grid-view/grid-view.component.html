@@ -1,0 +1,136 @@
+<div class="container" style="margin-top: 5%">
+  <mat-card>
+    <span (click)="addRow()">Add row</span>
+    <mat-grid-list
+      cols="5"
+      rowHeight="2:0.4"
+      *ngFor="
+        let dynamic of dynamicArray;
+        let i = index;
+        let last = last
+      ">
+      <mat-grid-tile>
+
+        <mat-select [(ngModel)]="dynamic.title1">
+          <mat-option value="INCLUDES">Includes</mat-option>
+          <mat-option value="EXCLUDES">Excludes </mat-option>
+        </mat-select>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-select [(ngModel)]="dynamic.title2">
+          <mat-option value="BusinessName">Business Name</mat-option>
+          <mat-option value="CampaignName">Campaign Name </mat-option>
+          <mat-option value="BranchName">Branch</mat-option>
+          <mat-option value="Industry">Industry </mat-option>
+          <mat-option value="Provider">Provider</mat-option>
+          <mat-option value="State">State </mat-option>
+          <mat-option value="Revenue">Revenue </mat-option>
+        </mat-select>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <mat-select [(ngModel)]="dynamic.title3">
+          <mat-option value="EQUALTO">Equal to</mat-option>
+          <mat-option value="CONTAINS">Contains </mat-option>
+          <mat-option value="DOESNOTCONTAIN">Does not contain</mat-option>
+          <mat-option value="STARTSWITH">Starts with </mat-option>
+          <mat-option value="ENDSWITH">Ends with </mat-option>
+          <mat-option value="GREATERTHAN">Greater than </mat-option>
+          <mat-option value="LESSTHAN">Less than </mat-option>
+        </mat-select>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <!-- <input
+          matInput
+          placeholder="Any value"
+          [(ngModel)]="item.expressions[i].value"
+        /> -->
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <!-- <span (click)="addRowAnd(item)" *ngIf="last" style="color: green"
+          >OR</span
+        > -->
+        <!-- <span *ngIf="!last">OR</span>
+        <span (click)="deleteRowAnd(item,i,y)" *ngIf="last" class="close"
+        ><i class="fas fa-times"></i
+      ></span> -->
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-card>
+  <mat-card>
+  <table class="table table-striped table-bordered">
+        <thead>
+            <tr>
+                <th>Action</th>
+                <th>Title 1</th>
+                <th>Title 2</th>
+                <th>Title 3</th>
+            </tr>
+        </thead>
+        <tbody  *ngFor="let dynamic of dynamicArray; let i = index;">
+             <tr>
+              <td (click)="deleteRow(i)">
+                <i class="fa fa-trash fa-2x"></i>
+              </td>
+                <td>
+                  <input [(ngModel)]="dynamicArray[i].title1" class="form-control" type="text" />
+                </td>
+                <td>
+                  <input [(ngModel)]="dynamicArray[i].title2" class="form-control" type="text" />
+                </td>
+                <td>
+                  <input [(ngModel)]="dynamicArray[i].title3" class="form-control" type="text"/>
+                </td>
+            </tr>
+            <tr>
+              <td (click)="addRow()">
+                <i class="fa fa-plus fa-2x"></i>
+              </td>
+            </tr>
+        </tbody>
+    </table>
+    <div>
+      <button (click)="onClick()">Save</button>
+    </div>
+
+  </mat-card>
+  <mat-card>
+   <div *ngFor="let item of dynamicAndArray; let y = index">
+
+      <table class="table table-striped table-bordered">
+      <thead>
+          <tr>
+              <th>Action</th>
+              <th>Title 1</th>
+              <th>Title 2</th>
+              <th>Title 3</th>
+          </tr>
+      </thead>
+      <tbody>
+           <tr *ngFor="let dynamic of item.dynamicArray; let i = index;">
+            <td (click)="deleteRow(i)">
+              <i class="fa fa-trash fa-2x"></i>
+            </td>
+              <td>
+                <input [(ngModel)]="item.dynamicArray[i].title1" class="form-control" type="text" />
+              </td>
+              <td>
+                <input [(ngModel)]="item.dynamicArray[i].title2" class="form-control" type="text" />
+              </td>
+              <td>
+                <input [(ngModel)]="item.dynamicArray[i].title3" class="form-control" type="text"/>
+              </td>
+          </tr>
+          <tr>
+            <td (click)="addRowAnd(item)">
+              <i class="fa fa-plus fa-2x"></i>
+            </td>
+          </tr>
+      </tbody>
+      </table>
+
+      <span (click)="addAnd()">AND</span>
+  </div>
+  <button (click)="onClick()">Save</button>
+
+</mat-card>
+  </div>

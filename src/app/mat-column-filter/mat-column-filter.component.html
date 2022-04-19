@@ -1,0 +1,40 @@
+<form class="example-form">
+  <mat-form-field class="example-full-width" appearance="fill">
+    <mat-label>Search</mat-label>
+    <input
+      type="text"
+      placeholder="Pick one"
+      aria-label="Search"
+      matInput
+      [formControl]="myControl"
+      [matAutocomplete]="auto"
+      #inputAutoComplete
+    />
+
+    <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete">
+      <div *ngIf="multiple && (filteredOptions | async)?.length">
+        <button (click)="onslectAll()">Select All</button>
+      </div>
+      <mat-option
+        *ngFor="let option of filteredOptions | async"
+        [value]="option.firstname"
+      >
+        <div *ngIf="multiple">
+          <mat-checkbox
+            [checked]="option.selected"
+            (click)="$event.stopPropagation()"
+            (change)="toggleSelection(option)"
+          >
+            {{ option.firstname }}
+          </mat-checkbox>
+        </div>
+        <span *ngIf="!multiple">
+          {{ option.firstname }}
+        </span>
+      </mat-option>
+      <div>
+        <button>Cancel</button><button (click)="onApply($event)">Apply</button>
+      </div>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>

@@ -1,0 +1,113 @@
+<div
+  style="
+    display: flex;
+    flex-direction: row;
+    align-content: flex-start;
+    justify-content: space-evenly;
+  "
+>
+  <div class="example-container">
+    <h2>Source</h2>
+
+    <div
+      cdkDropList
+      #todoList="cdkDropList"
+      [cdkDropListData]="todo"
+      [cdkDropListConnectedTo]="[doneList]"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)"
+    >
+      <div
+        class="example-box"
+        *ngFor="let item of todo"
+        cdkDrag
+        (click)="onSelect($event, item, todo)"
+        [ngClass]="{
+          selected: item.selected,
+          'cdk-drag-placeholder': item.isMultidragging
+        }"
+      >
+        {{ item.name }}
+        <!-- <span
+          *cdkDragPreview
+          [ngClass]="{
+            multi: item.isMultidragging,
+            single: !item.isMultidragging
+          }"
+        >
+          <div *ngFor="let item of stored">
+            {{ item.name }}
+          </div>
+          <div *ngIf="stored.length === 0">{{ item.name }}</div>
+        </span> -->
+      </div>
+    </div>
+  </div>
+  <div
+    class="example-container"
+    style="
+      margin: 0 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    "
+  >
+    <button
+      type="button"
+      class="btn-block"
+      (click)="moveItem(todo, done)"
+      [disabled]="todo.length === 0"
+    >
+      &#8250;
+    </button>
+    <!-- <button type="button" class="btn-block" (click)="moveAll()"
+        [disabled]="isAllSelected(available)">&#187;</button> -->
+    <button
+      type="button"
+      class="btn-block"
+      (click)="moveItem(done, todo)"
+      [disabled]="done.length === 0"
+    >
+      &#8249;
+    </button>
+    <!-- <button type="button" class="btn-block" (click)="removeAll()"
+      [disabled]="isAllSelected(confirmed)">&#171;</button> -->
+  </div>
+  <div class="example-container">
+    <h2>Target</h2>
+
+    <div
+      cdkDropList
+      #doneList="cdkDropList"
+      [cdkDropListData]="done"
+      [cdkDropListConnectedTo]="[todoList]"
+      class="example-list"
+      (cdkDropListDropped)="drop($event)"
+    >
+      <div
+        class="example-box"
+        *ngFor="let item of done"
+        cdkDrag
+        (click)="onSelect($event, item, done)"
+        [ngClass]="{
+          selected: item.selected,
+          'cdk-drag-placeholder': item.isMultidragging
+        }"
+      >
+        {{ item.name }}
+        <!-- <span
+          *cdkDragPreview
+          [ngClass]="{
+            multi: item.isMultidragging,
+            single: !item.isMultidragging
+          }"
+        >
+          <div *ngFor="let item of stored">
+            {{ item.name }}
+          </div>
+          <div *ngIf="stored.length === 0">{{ item.name }}</div>
+        </span> -->
+      </div>
+    </div>
+  </div>
+</div>
