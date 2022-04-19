@@ -39,7 +39,6 @@ export class MyCustomPaginatorIntl extends MatPaginatorIntl {
     }
 
     length = Math.max(length, 0);
-
     const startIndex = page * pageSize;
     const endIndex =
       startIndex < length
