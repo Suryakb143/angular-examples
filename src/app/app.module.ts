@@ -33,6 +33,11 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { MatColumnFilterComponent } from './mat-column-filter/mat-column-filter.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { UdemyObservable1 } from './Observable/udemy/observable1';
+import { AppRoutingModule } from './app-routing.module';
+import { CommonModule } from '@angular/common';
+import { CreditDebitMaskPipePipe } from './shared/credit-debit-mask-pipe.pipe';
+import { AccountMaskDirective } from './shared/better-highlight.directive';
 
 @NgModule({
   declarations: [
@@ -48,9 +53,13 @@ import { ReactiveFormsModule } from '@angular/forms';
     CdkDualListComponent,
     MatPaginatorNavComponent,
     MatColumnFilterComponent,
+    CreditDebitMaskPipePipe,
+    AccountMaskDirective,
+    UdemyObservable1
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     BrowserAnimationsModule,
     NgMaterialModule,
     BrowserModule,
@@ -67,6 +76,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     RouterModule.forRoot([]),
     ReactiveFormsModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent],
