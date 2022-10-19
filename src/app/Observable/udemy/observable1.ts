@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { Observable } from "rxjs";
+import { concat, Observable, of } from "rxjs";
 import { DataSharingService } from "src/app/shared/dataService.service";
 
 @Component({
@@ -7,6 +7,8 @@ import { DataSharingService } from "src/app/shared/dataService.service";
   template: '<div>  {{observable$}}</div>',
 })
 export class UdemyObservable1 implements OnInit {
+   list1 = of(2, 4, 6, 8, 10, 12, 14, 16, 18, 20);  
+   list2 = of(1, 3, 5, 7, 9, 11, 13, 15, 17, 19);  
 
   observable$ = new Observable<string>(subscribe => {
     console.log('observable executed');
@@ -47,6 +49,9 @@ export class UdemyObservable1 implements OnInit {
         error: val => { console.log('single::' + val) },
       });
     }, 3000);
+
+    let final_val =concat(this.list1,this.list2);  
+    final_val.subscribe(x => console.log(x)); 
   }
 
 

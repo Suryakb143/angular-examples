@@ -57,6 +57,7 @@ export class MyCustomPaginatorIntl extends MatPaginatorIntl {
 })
 export class AppComponent {
   sliderValue: number = 0;
+
   @ViewChild('container', { static: true, read: ViewContainerRef }) entry: ViewContainerRef | undefined;
   cardNumber = "1234567890123456";
   options: Options = {
